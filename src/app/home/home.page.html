@@ -13,8 +13,30 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+  <ion-searchbar placeholder="Filter Schedules" [(ngModel)]="term" animated="true"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let user of usersList | filter:term">
+      <ion-avatar>
+        <img src={{user.image}}>
+      </ion-avatar>
+      <ion-grid class="grid_margin_left">
+        <ion-row class="user_name">
+          <ion-label>{{user.name}}</ion-label>
+        </ion-row>
+        <ion-row class="user_info">
+          {{user.job}} | {{user.id}}
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
