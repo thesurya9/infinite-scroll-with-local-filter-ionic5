@@ -1,0 +1,7 @@
+{
+  "name": "assingmnet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
